@@ -26,9 +26,9 @@ class apim_gateway::params {
   $product_version = '2.6.0'
   $service_name = 'wso2am'
 
-  $hostname = 'localhost'
-  $mgt_hostname = 'localhost'
-  $jdk_version = 'jdk1.8.0_192'
+  $hostname = 'xanders-gw1'   #xanders-gw2
+  $mgt_hostname = 'xanders-gw1'  #xanders-gw2
+  $jdk_version = 'jdk1.8.0_181'
 
   # Define the templates
   $start_script_template = 'bin/wso2server.sh'
@@ -36,21 +36,21 @@ class apim_gateway::params {
     'repository/conf/api-manager.xml',
     'repository/conf/datasources/master-datasources.xml',
     'repository/conf/carbon.xml',
-    # 'repository/conf/registry.xml',
-    # 'repository/conf/user-mgt.xml',
+    'repository/conf/registry.xml',
+    'repository/conf/user-mgt.xml',
     # 'repository/conf/axis2/axis2.xml',
     # 'repository/conf/identity/identity.xml',
     # 'repository/conf/security/authenticators.xml',
-    # 'repository/conf/tomcat/catalina-server.xml',
+    'repository/conf/tomcat/catalina-server.xml',
   ]
 
   # ----- api-manager.xml config params -----
-  $auth_manager_url = 'https://localhost:${mgt.transport.https.port}${carbon.context}services/'
+  $auth_manager_url = 'https://xanders-keymanager.com:443/services/'
   $auth_manager_username = '${admin.username}'
   $auth_manager_password = '${admin.password}'
   $auth_manager_check_permission_remotely = 'false'
 
-  $api_gateway_url = 'https://localhost:${mgt.transport.https.port}${carbon.context}services/'
+  $api_gateway_url = 'https://lxanders-gateway.com:443/services/'
   $api_gateway_username = '${admin.username}'
   $api_gateway_password = '${admin.password}'
   $api_gateway_endpoint = 'http://${carbon.local.ip}:${http.nio.port},https://${carbon.local.ip}:${https.nio.port}'
@@ -64,28 +64,28 @@ class apim_gateway::params {
   $stream_processor_restapi_username = '${admin.username}'
   $stream_processor_restapi_password = '${admin.password}'
 
-  $api_store_url = 'https://localhost:${mgt.transport.https.port}/store'
-  $api_store_server_url = 'https://localhost:${mgt.transport.https.port}${carbon.context}services/'
+  $api_store_url = 'https://xanders-pst.com:443/store'
+  $api_store_server_url = 'https://xanders-pst.com:443/services/'
   $api_store_username = '${admin.username}'
   $api_store_password = '${admin.password}'
 
-  $api_publisher_url = 'https://localhost:${mgt.transport.https.port}/publisher'
+  $api_publisher_url = 'https://xanders-pst.com:443/publisher'
 
   # ----- Master-datasources config params -----
-  $wso2am_db_url = 'jdbc:h2:repository/database/WSO2AM_DB;DB_CLOSE_ON_EXIT=FALSE'
-  $wso2am_db_username = 'wso2carbon'
-  $wso2am_db_password = 'wso2carbon'
-  $wso2am_db_driver = 'org.h2.Driver'
+  $wso2am_db_url = 'jdbc:mysql://192.168.104.47:3306/WSO2AM_DB?useSSL=false'
+  $wso2am_db_username = 'root'
+  $wso2am_db_password = 'root'
+  $wso2am_db_driver = 'com.mysql.jdbc.Driver'
 
-  $stat_db_url = 'jdbc:h2:../tmpStatDB/WSO2AM_STATS_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000;AUTO_SERVER=TRUE'
-  $stat_db_username = 'wso2carbon'
-  $stat_db_password = 'wso2carbon'
-  $stat_db_driver = 'org.h2.Driver'
+  $stat_db_url = 'jdbc:mysql://192.168.104.47:3306/WSO2STAT_DB?useSSL=false'
+  $stat_db_username = 'root'
+  $stat_db_password = 'root'
+  $stat_db_driver = 'com.mysql.jdbc.Driver'
 
-  $mb_store_db_url = 'jdbc:h2:repository/database/WSO2MB_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
-  $mb_store_db_username = 'wso2carbon'
-  $mb_store_db_password = 'wso2carbon'
-  $mb_store_driver = 'org.h2.Driver'
+  $mb_store_db_url = 'jdbc:mysql://192.168.104.47:3306/WSO2MB_STORE_DB?useSSL=false'
+  $mb_store_db_username = 'root'
+  $mb_store_db_password = 'root'
+  $mb_store_driver = 'com.mysql.jdbc.Driver'
 
   # ----- Carbon.xml config params -----
   $ports_offset = 0
